@@ -18,11 +18,21 @@ jobs:
       - checkout
       - ruby/install-deps
 
+  test:
+    docker:
+      - image: cimg/ruby:2.7.2
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rspec-test
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  version: 1
+  build_and_test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
-      - ruby/rspec-test
+      - test:
+          requires:
+            -build
