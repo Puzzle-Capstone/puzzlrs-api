@@ -21,6 +21,7 @@ jobs:
   test:
     docker:
       - image: cimg/ruby:2.7.2
+    executor: ruby/default
     steps:
       - checkout
       - ruby/install-deps
