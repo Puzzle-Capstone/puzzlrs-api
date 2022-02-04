@@ -1,18 +1,15 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
+version: 2.1 # Use 2.1 to enable using orbs and other features.
 
-# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
-# See: https://circleci.com/docs/2.0/orb-intro/
+# Declare the orbs that we'll use in our config.
+# read more about orbs: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  ruby: circleci/ruby@1.4.0
+  ruby: circleci/ruby@1.0
+  node: circleci/node@2
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  build: # our first job, named "build"
     docker:
-      - image: cimg/ruby:2.7.2
+      - image: cimg/ruby:2.7-node # use a tailored CircleCI docker image.
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -22,6 +19,9 @@ jobs:
       # use the node orb to install our packages
       # specifying that we use `yarn` and to cache dependencies with `yarn.lock`
       # learn more: https://circleci.com/docs/2.0/caching/
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
 
   test:  # our next job, called "test"
     # we run "parallel job containers" to enable speeding up our tests;
@@ -29,7 +29,7 @@ jobs:
     parallelism: 3
     # here we set TWO docker images.
     docker:
-      - image: cimg/ruby:2.7.2 # this is our primary docker image, where step commands run.
+      - image: cimg/ruby:2.7-node # this is our primary docker image, where step commands run.
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -53,6 +53,9 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
       # Here we make sure that the secondary container boots
       # up before we run operations on the database.
       - run:
