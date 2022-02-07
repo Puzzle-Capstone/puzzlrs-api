@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
         resources :puzzles, only: [:index, :show]
         resources :users, only: :show
+        resources :requests, only: [:create, :update, :destroy]
     end
   end
 end
