@@ -18,7 +18,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
         environment:
           RAILS_ENV: test
-          PGHOST: 127.0.0.1
+          PGHOST: localhost
           PGUSER: root
 
       - image: cimg/postgres:14.0
@@ -27,7 +27,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
         environment:
           POSTGRES_USER: root
-          POSTGRES_DB: puzzlers-api_test
+          POSTGRES_DB: puzzlrs_api_test
     steps:
       - checkout # pull down our git code.
       - ruby/install-deps # use the ruby orb to install dependencies
@@ -47,7 +47,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
         environment:
           RAILS_ENV: test
-          PGHOST: 127.0.0.1
+          PGHOST: localhost
           PGUSER: root
 
       - image: cimg/postgres:14.0
@@ -56,7 +56,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
         environment:
           POSTGRES_USER: root
-          POSTGRES_DB: puzzlers-api_test
+          POSTGRES_DB: puzzlrs_api_test
     # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout
