@@ -19,12 +19,11 @@ ActiveRecord::Schema.define(version: 2022_02_04_005219) do
     t.bigint "user_id"
     t.string "image"
     t.string "category"
-    t.string "description"
     t.string "piece_count"
     t.string "missing_pieces"
     t.boolean "availability"
-    t.string "difficulty"
     t.string "quality"
+    t.string "original_price_point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_puzzles_on_user_id"
