@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_005219) do
   create_table "requests", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "puzzle_id"
-    t.text "body"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
