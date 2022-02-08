@@ -114,18 +114,50 @@ RSpec.describe 'Puzzles API' do
   
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post '/api/v1/puzzles', headers: headers, params: JSON.generate(puzzle: puzzle_params)
+      post '/api/v1/puzzles', headers: headers, params: JSON.generate(puzzle_params)
 
-      puzzle = Puzzle.last
+      expect(response).to be_successful
 
-      expect(puzzle.user_id).to eq user.id
-      expect(puzzle.image).to eq 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053'
-      expect(puzzle.category).to eq 'Animals'
-      expect(puzzle.piece_count).to eq 1000
-      expect(puzzle.missing_pieces).to eq '2'
-      expect(puzzle.availability).to eq true
-      expect(puzzle.quality).to eq 'Good'
-      expect(puzzle.original_price_point).to eq '32.99'
+      puzzle_data = JSON.parse(response.body, symbolize_names: :true)[:data][:attributes]
+
+      expect(puzzle_data[:image]).to eq 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053'
+      expect(puzzle_data[:category]).to eq 'Animals'
+      expect(puzzle_data[:piece_count]).to eq '1000'
+      expect(puzzle_data[:missing_pieces]).to eq '2'
+      expect(puzzle_data[:availability]).to eq true
+      expect(puzzle_data[:quality]).to eq 'Good'
+      expect(puzzle_data[:original_price_point]).to eq '32.99'
+    end
+  end
+
+  # describe 'PATCH /api/v1/puzzles/:id' do
+  #   let!(:user) { User.create(username: Faker::Name.first_name, email: Faker::Internet.email, address: Faker::Address.full_address) }
+
+  #   let!(:puzzle1) { user.puzzles.create(image: Faker::LoremFlickr.image(search_terms: ['puzzle']), category: Faker::Book.genre, piece_count: Faker::Number.between(from: 500, to: 5000), missing_pieces: Faker::Number.between(from: 0, to: 50), availability: true, quality: 'Good', original_price_point: '35.99') }
+
+  #   headers = {"CONTENT_TYPE" => "application/json"}
+
+  #   before { patch "/api/v1/puzzles/#{puzzle1.id}", headers: headers }
+
+  #   it 'should update the puzzles availability' do
+  #     expect(response).to be_successful
+
+  #     availability = JSON.parse(response.body, symbolize_names: :true)[:data][:attributes][:availability]
+
+  #     expect(availability).to eq false
+  #   end
+  # end
+
+  describe 'DELETE /api/v1/puzzles/:id' do
+    let!(:user) { User.create(username: Faker::Name.first_name, email: Faker::Internet.email, address: Faker::Address.full_address) }
+
+    let!(:puzzle1) { user.puzzles.create(image: Faker::LoremFlickr.image(search_terms: ['puzzle']), category: Faker::Book.genre, piece_count: Faker::Number.between(from: 500, to: 5000), missing_pieces: Faker::Number.between(from: 0, to: 50), availability: true, quality: 'Good', original_price_point: '35.99') }
+
+    it 'should delete the specified puzzle' do
+      delete "/api/v1/puzzles/#{puzzle1.id}"
+
+      expect(response).to be_successful
+      expect(Puzzle.all.count).to eq 0
     end
   end
 end
