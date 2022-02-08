@@ -19,7 +19,7 @@ category = ['Art', 'Animals', 'Food', 'Holidays', 'Miscellaneous', 'Mythical', '
 
 missing_pieces = ['1', '2', '3', '4', '5+']
 
-quality = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
+quality = ['Poor', 'Fair', 'Good', 'Excellent']
 
 puzzle1 = micha.puzzles.create(image: 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053', category: category.sample, piece_count: Faker::Number.between(from: 500, to: 5000), missing_pieces: missing_pieces.sample, availability: true, quality: quality.sample, original_price_point: '32.99')
 puzzle2 = micha.puzzles.create(image: 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-listfield-rainbow_5274224_4_1800x1800.jpg?v=1638228235', category: category.sample, piece_count: Faker::Number.between(from: 500, to: 5000), missing_pieces: missing_pieces.sample, availability: true, quality: quality.sample, original_price_point: '33.99')
