@@ -1,5 +1,5 @@
 class RequestNotificationMailer < ApplicationMailer
-  default from: 'donotreply@puzzlr.io'
+  default from: 'puzzlrmailer@gmail.com'
 
   def request_notification_email
     @user = params[:user]
