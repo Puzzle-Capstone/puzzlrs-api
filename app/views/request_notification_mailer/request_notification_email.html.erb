@@ -1,0 +1,23 @@
+<h1><%= @user.username %>, you have a request!</h1>
+<h3>Log in to Puzzlr to accept or reject</h3>
+<h4>Puzzle Details:</h4>
+<div>
+  <%= image_tag("#{@puzzle.image}", :alt => "Puzzle") %>
+  <ul>
+    <li>
+      <%= @puzzle.category %>
+    </li>
+    <li>
+      <%= @puzzle.piece_count %>
+    </li>
+    <li>
+      <%= @puzzle.missing_pieces %>
+    </li>
+    <li>
+      <%= @puzzle.original_price_point %>
+    </li>
+    <li>
+      <%= @puzzle.quality %>
+    </li>
+  </ul>
+</div>
