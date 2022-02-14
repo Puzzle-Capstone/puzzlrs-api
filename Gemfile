@@ -42,6 +42,9 @@ group :development, :test do
   gem 'shoulda'
   gem 'capybara'
   gem 'simplecov'
+end
+
+group :test do
   gem 'rspec-sidekiq'
 end
 
