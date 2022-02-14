@@ -3,6 +3,6 @@ class AcceptanceMailer < ApplicationMailer
     @user = params[:user]
     @puzzle = params[:puzzle]
 
-    mail(to: @user.email, subject: "Your request has been accepted")
+    mail(to: @user.email, subject: "Puzzlrs: Your request has been accepted")
   end
 end
