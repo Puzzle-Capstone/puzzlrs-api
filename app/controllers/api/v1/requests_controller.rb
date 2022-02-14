@@ -5,7 +5,8 @@ class Api::V1::RequestsController < ApplicationController
     @puzzle = request.puzzle
 
     if request.save
-      RequestNotificationMailer.with(user: @puzzle.user, puzzle: @puzzle).request_notification_email.deliver_now
+      MailerWorker.perform_async(@puzzle.user, @puzzle)
+      # RequestNotificationMailer.with(user: @puzzle.user, puzzle: @puzzle).request_notification_email.deliver_now
     end
 
     render json: RequestSerializer.new(request), response: 201
