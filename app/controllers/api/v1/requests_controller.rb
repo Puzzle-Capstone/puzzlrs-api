@@ -20,9 +20,9 @@ class Api::V1::RequestsController < ApplicationController
 
     if params[:status] == 'accepted'
       AcceptanceMailer.with(user: @user, puzzle: @puzzle).acceptance_email.deliver_now
-    elsif params[:status] == 'declined'
       request = request.destroy
       @puzzle.destroy
+    elsif params[:status] == 'declined'
       RejectionMailer.with(user: @user, puzzle: @puzzle).rejection_email.deliver_now
       request = request.destroy
     end
