@@ -1,4 +1,7 @@
-require 'rails_helper'
+require 'spec_helper'
 RSpec.describe MailerWorker, type: :worker do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to be_processed_in :my_queue }
+  it { is_expected.to be_retryable false }
+  it { is_expected.to be_unique }
+  it { is_expected.to be_expired_in 1.hour }
 end
