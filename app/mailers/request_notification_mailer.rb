@@ -5,6 +5,6 @@ class RequestNotificationMailer < ApplicationMailer
     @user = params[:user]
     @puzzle = params[:puzzle]
 
-    mail(to: @user.email, subject: "A request is in for one of your puzzles!")
+    mail(to: @user.email, subject: "Puzzlrs: A request is in for one of your puzzles!")
   end
 end

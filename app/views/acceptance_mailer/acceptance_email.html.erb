@@ -1,22 +1,22 @@
 <h1><%= @user.username %>, your puzzle request has been accepted!</h1>
 <h4>Puzzle Details:</h4>
 <div>
-  <%= image_tag("#{@puzzle.image}", :alt => "Puzzle") %>
+  <%= image_tag("#{@puzzle.image}", :alt => "Puzzle", size: '300x300') %>
   <ul>
     <li>
-      <%= @puzzle.category %>
+      Category: <%= @puzzle.category %>
     </li>
     <li>
-      <%= @puzzle.piece_count %>
+      Piece Count: <%= @puzzle.piece_count %>
     </li>
     <li>
-      <%= @puzzle.missing_pieces %>
+      Missing Pieces: <%= @puzzle.missing_pieces %>
     </li>
     <li>
-      <%= @puzzle.original_price_point %>
+      Original Price: <%= @puzzle.original_price_point %>
     </li>
     <li>
-      <%= @puzzle.quality %>
+      Quality: <%= @puzzle.quality %>
     </li>
   </ul>
 </div>
