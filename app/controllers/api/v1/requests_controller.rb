@@ -5,7 +5,8 @@ class Api::V1::RequestsController < ApplicationController
     @puzzle = request.puzzle
 
     if request.save
-      RequestNotificationMailer.with(user: @puzzle.user, puzzle: @puzzle).request_notification_email.deliver_now
+      MailerWorker.perform_async(@puzzle.user.id, @puzzle.id)
+      # RequestNotificationMailer.with(user: @puzzle.user, puzzle: @puzzle).request_notification_email.deliver_now
     end
 
     render json: RequestSerializer.new(request), response: 201
@@ -23,7 +24,8 @@ class Api::V1::RequestsController < ApplicationController
       request = request.destroy
       @puzzle.destroy
     elsif params[:status] == 'declined'
-      RejectionMailer.with(user: @user, puzzle: @puzzle).rejection_email.deliver_now
+      RejectionWorker.perform_async(@user.id, @puzzle.id)
+      # RejectionMailer.with(user: @user, puzzle: @puzzle).rejection_email.deliver_now
       request = request.destroy
     end
 
