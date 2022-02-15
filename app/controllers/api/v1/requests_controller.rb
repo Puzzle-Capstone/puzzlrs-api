@@ -20,8 +20,9 @@ class Api::V1::RequestsController < ApplicationController
     @puzzle = request.puzzle
 
     if params[:status] == 'accepted'
-      AcceptanceWorker.perform_async(@user.id, @puzzle.id)
-      # AcceptanceMailer.with(user: @user, puzzle: @puzzle).acceptance_email.deliver_now
+      AcceptanceMailer.with(user: @user, puzzle: @puzzle).acceptance_email.deliver_now
+      request = request.destroy
+      @puzzle.destroy
     elsif params[:status] == 'declined'
       RejectionWorker.perform_async(@user.id, @puzzle.id)
       # RejectionMailer.with(user: @user, puzzle: @puzzle).rejection_email.deliver_now
