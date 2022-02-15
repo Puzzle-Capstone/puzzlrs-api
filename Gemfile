@@ -12,7 +12,7 @@ gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -28,6 +28,8 @@ gem 'faker'
 gem 'rack-cors'
 gem 'figaro'
 
+gem 'sidekiq'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -40,6 +42,10 @@ group :development, :test do
   gem 'shoulda'
   gem 'capybara'
   gem 'simplecov'
+end
+
+group :test do
+  gem 'rspec-sidekiq'
 end
 
 group :development do
