@@ -47,5 +47,5 @@ The average puzzle enthusiast builds their new puzzle once and then tucks it awa
 
 # Contributors
 - Micha Bernhard   |  [Github](https://github.com/michab17)   |   [LinkedIn](https://www.linkedin.com/in/micha-bernhard/)
-- Stephanie Helm   |  [Github](https://github.com/chloell5)   |   [LinkedIn](https://www.linkedin.com/in/chloe-price-1705//)
+- Chloe Price   |  [Github](https://github.com/chloell5)   |   [LinkedIn](https://www.linkedin.com/in/chloe-price-1705//)
 
