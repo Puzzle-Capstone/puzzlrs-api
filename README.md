@@ -23,7 +23,7 @@ The average puzzle enthusiast builds their new puzzle once and then tucks it awa
 - [Database Schema](#database-schema)
 - [Contributors](#contributors)
 
-# Local Setup.
+# Local Setup
 - Versions
   - Rails 5.2.6
   - Ruby 2.7.2
