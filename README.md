@@ -21,6 +21,7 @@ The average puzzle enthusiast builds their new puzzle once and then tucks it awa
 # Readme Content
 - [Local Setup](#local-setup)
 - [Database Schema](#database-schema)
+- [Endpoints](#enpoints)
 - [Contributors](#contributors)
 
 # Local Setup
@@ -43,6 +44,24 @@ The average puzzle enthusiast builds their new puzzle once and then tucks it awa
 
 # Database Schema
 ![screen_shot_2022-02-02_at_4 56 34_pm](https://user-images.githubusercontent.com/87393003/154370766-73b75081-9a76-41d7-932f-2e449019139e.png)
+
+# Endpoints
+
+Gets all of the Puzzles | GET    /api/v1/puzzles
+
+Creates a new Puzzle | POST   /api/v1/puzzles
+
+Gets one puzzle based on the given ID | GET    /api/v1/puzzles/:id
+
+Deletes one Puzzle based on the given ID | DELETE /api/v1/puzzles/:id
+
+Gets one User based on the given ID | GET    /api/v1/users/:id
+
+Creates a new request | POST   /api/v1/requests
+
+Edits the status of the given request | PATCH  /api/v1/requests/:id
+
+Deletes one request based on the given ID | DELETE   /api/v1/requests/:id
 
 
 # Contributors
